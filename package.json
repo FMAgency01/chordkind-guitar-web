@@ -1,0 +1,22 @@
+{
+  "name": "monorepo-ssr",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "setup": "npm install",
+    "postinstall": "cd apps/web",
+    "dev": "concurrently --kill-others --raw \"npm run dev --prefix apps/web\"",
+    "build": "npm run build:web",
+    "build:web": "npm --prefix apps/web run build",
+    "start": "npx serve dist/apps/web/client -s -l 3000",
+    "lint": "concurrently --raw \"npm run lint --prefix apps/web\"",
+    "typecheck": "concurrently --raw \"npm run typecheck --prefix apps/web\""
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.4",
+    "knip": "^6.32.1"
+  },
+  "workspaces": [
+    "apps/*"
+  ]
+}
